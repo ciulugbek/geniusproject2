@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    
+    <h2>Edit student form:</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student_fio">Student FIO</label>
+            <input type="text" value="{{ student_obj.student_fio }}" id="student_fio" name="student_fio">
+            
+        </div>
+        <div class="form-group">
+            <label for="student_active">Student status</label>
+            {% if student_obj.student_active == True %}
+                <input type="checkbox" value="checked" id="student_active" name="student_active" checked>
+            {% else %}
+                <input type="checkbox" value="checked" id="student_active" name="student_active">    
+            {% endif %}    
+            
+            
+        </div>
+        <div class="form-group">
+            <label for="student_phone">Student phone</label>
+            <input type="text" value="{{ student_obj.student_phone }}" id="student_phone" name="student_phone">
+            
+        </div>
+        <div class="form-group">
+            <label for="student_email">Student email</label>
+            <input type="email" value="{{ student_obj.student_email }}" id="student_email" name="student_email">
+            
+        </div>
+        <div class="form-group">
+            <label for="student_photo">Student photo</label>
+            <img src="{{ student_obj.student_photo.url }}" class="img-responsive" style="width: 200px; height: 200px;" />            
+        </div>
+        <div class="form-group">
+            <label for="student_photo">Select student photo</label>
+            <input type="file" value="" id="student_photo" name="student_photo">
+            
+        </div>
+
+
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

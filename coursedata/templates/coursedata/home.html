@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:group_list" %}">Groups</a>
+    <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:student_list" %}">Students</a>
+    <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:parent_list" %}">Parents</a>
+    <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:student_parent_list" %}">Parent of Students</a>
+    <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:student_group_list" %}">Group of Students</a>
+    
+{% endblock %}
+

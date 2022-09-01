@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Edit group for student:</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student">Select Student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student">
+                {% for student in student_obj %}
+                    {% if student.id == student_group_cur_obj.student_id.id %}
+                        <option value="{{ student.id }}" selected>{{ student.student_fio }}</option>
+                    {% else %}
+                        <option value="{{ student.id }}">{{ student.student_fio }}</option>
+                    {% endif %}                
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="group">Select Parent</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group">
+                {% for group in group_obj %}
+                    {% if group.id == student_group_cur_obj.group_id.id %}
+                        <option value="{{ group.id }}" selected>{{ group.group_name }}</option>
+                    {% else %}
+                        <option value="{{ group.id }}">{{ group.group_name }}</option>    
+                    {% endif %}    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="student_group_active">Select status</label>
+            {% if student_group_cur_obj.student_group_active == True %}
+                <input type="checkbox" value="checked" id="student_group_active" name="student_group_active" checked>
+            {% else %}
+                <input type="checkbox" value="checked" id="student_group_active" name="student_group_active">
+            {% endif %}
+
+        </div>
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

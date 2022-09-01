@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Edit(See) exam result for student:</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Select exam type(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam" disabled>
+                <option value="{{ ExamStudentResultInd_obj.exam_student_id.exam_id.id }}" selected>{{ ExamStudentResultInd_obj.exam_student_id.exam_id.exam_name }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group" disabled>
+                <option value="{{ ExamStudentResultInd_obj.exam_student_id.student_group_id.group_id.id }}" selected>{{ ExamStudentResultInd_obj.exam_student_id.student_group_id.group_id.group_name }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="student">Select student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student" disabled>
+                <option value="{{ ExamStudentResultInd_obj.exam_student_id.student_group_id.student_id.id }}" selected>{{ ExamStudentResultInd_obj.exam_student_id.student_group_id.student_id.student_fio}}({{ExamStudentResultInd_obj.exam_student_id.student_group_id.student_id.student_phone}})</option>
+            </select>
+        </div>
+        <div>
+            <label for="exam_percent">Enter exam result</label>
+            <input  class="form-select" type="number"  value="{{ ExamStudentResultInd_obj.exam_percent }}" id="exam_percent" name="exam_percent" min="1" max="100">
+        </div>
+        <div>
+            <label for="exam_student_result_comment">Exam comment</label>
+            <textarea  class="form-select" id="exam_student_result_comment" name="exam_student_result_comment">{{ ExamStudentResultInd_obj.exam_comment }}</textarea>
+        </div>
+        <input type="hidden" id="exam_student" name="exam_student" value="{{ ExamStudentResultInd_obj.exam_student_id.id }}">
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

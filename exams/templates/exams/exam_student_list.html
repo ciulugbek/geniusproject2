@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "exams:create_exam_student" %}">New exam for student</a>
+<h1>List of exams for Students</h1>
+
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Exam name</th>
+            <th>Student group</th>
+            <th>Student full name</th>
+            <th>Student phone</th>
+            <th>Exam date</th>
+            <th>Operation</th>
+            <th>Operation</th>
+            <th>Exam result</th>
+        </tr>
+    </thead>
+      <tbody>
+        {% for examstudent in examstudent_obj %}
+        <tr>
+            <td>{{ examstudent.id }}</td>
+            <td>{{ examstudent.exam_id.exam_name }}</td>
+            <td>{{ examstudent.student_group_id.group_id.group_name }}</td>
+            <td>{{ examstudent.student_group_id.student_id.student_fio }}</td>
+            <td>{{ examstudent.student_group_id.student_id.student_phone }}</td>
+            <td>{{ examstudent.exam_student_date }}</td>
+            <td><a class="btn btn-success" role="button" href="/exams/exam_student_update/{{examstudent.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/exams/exam_student_delete/{{examstudent.id}}">Delete</a></td>
+            <td><a class="btn btn-warning" role="button" href="/exams/exam_student_result_list_ind/{{examstudent.id}}">Info</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+    
+     
+{% endblock %}
+
+
+

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:create_group" %}">New groups</a>
+<h1>List of Groups</h1>
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Group name</th>
+            <th>Group create date</th>
+            <th>Group status</th>
+            <th>Group operation</th>
+            <th>Group operation</th>
+        </tr>
+    </thead>
+      <tbody>
+      
+
+    {% for group in groups_list %}
+        <tr>
+            <td>{{ group.id }}</td>
+            <td>{{ group.group_name }}</td>
+            <td>{{ group.group_create_date }}</td>
+            <td>{{ group.group_active }}</td>
+            <td><a class="btn btn-success" role="button" href="/coursedata/group_update/{{group.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/coursedata/group_delete/{{group.id}}">Delete</a></td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+     
+{% endblock %}
+
+
+<!-- <li>
+    <a href="/coursedata/group_detail/{{group.id}}">{{ group.group_name }} </a>
+    
+    
+</li>
+    <ul>
+        <li><a href="/coursedata/group_update/{{group.id}}">Update Information</a></li>
+        <li><a href="/classroom/group_delete/{{group.id}}">Delete Information</a></li>
+    </ul>
+ -->

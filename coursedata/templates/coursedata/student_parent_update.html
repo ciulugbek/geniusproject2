@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Edit parent for student:</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student">Select Student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student">
+                {% for student in student_obj %}
+                    {% if student.id == student_parent_cur_obj.student_id.id %}
+                        <option value="{{ student.id }}" selected>{{ student.student_fio }}</option>
+                    {% else %}
+                        <option value="{{ student.id }}">{{ student.student_fio }}</option>
+                    {% endif %}                
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="parent">Select Parent</label>
+            <select class="form-select" aria-label="Default select example" id="parent" name="parent">
+                {% for parent in parent_obj %}
+                    {% if parent.id == student_parent_cur_obj.parent_id.id %}
+                        <option value="{{ parent.id }}" selected>{{ parent.parent_fio }}</option>
+                    {% else %}
+                        <option value="{{ parent.id }}">{{ parent.parent_fio }}</option>    
+                    {% endif %}    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="student_parent_active">Select status</label>
+            {% if student_parent_cur_obj.student_parent_active == True %}
+                <input type="checkbox" value="checked" id="student_parent_active" name="student_parent_active" checked>
+            {% else %}
+                <input type="checkbox" value="checked" id="student_parent_active" name="student_parent_active">
+            {% endif %}
+
+        </div>
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

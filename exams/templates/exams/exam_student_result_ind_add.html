@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Add a new exam result for student:</h2>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Exam(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam" disabled>
+                
+                    <option value="{{ examstudent_cur_obj.exam_id.id }}" >{{ examstudent_cur_obj.exam_id.exam_name }}</option>
+                
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group" disabled>
+               
+                    <option value="{{ examstudent_cur_obj.student_group_id.group_id.id }}">{{ examstudent_cur_obj.student_group_id.group_id.group_name }}</option>
+         
+            </select>
+        </div>
+        <div>
+            <label for="student">Select student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student" disabled>
+               
+                    <option value="{{ examstudent_cur_obj.student_group_id.student_id.id }}">{{ examstudent_cur_obj.student_group_id.student_id.student_fio}}({{ examstudent_cur_obj.student_group_id.student_id.student_phone }}) </option>
+   
+            </select>
+        </div>
+        <div>
+            <label for="exam_percent">Enter exam result</label>
+            <input  class="form-select" type="number" id="exam_percent" name="exam_percent" min="1" max="100">
+        </div>
+        <div>
+            <label for="exam_student_result_comment">Exam comment</label>
+            <textarea  class="form-select" id="exam_student_result_comment" name="exam_student_result_comment"></textarea>
+        </div>
+        <input type="hidden" id="exam_student" name="exam_student" value="{{ examstudent_cur_obj.id }}">
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

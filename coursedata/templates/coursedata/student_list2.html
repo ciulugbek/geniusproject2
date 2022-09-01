@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:create_student" %}">New student</a>
+<h1>List of Students</h1>
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student full name</th>
+            <th>Student create date</th>
+            <th>Student status</th>
+            <th>Student phone</th>
+            <th>Group operation</th>
+            <th>Group operation</th>
+        </tr>
+    </thead>
+      <tbody>
+      
+
+    {% for student in list_student %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.student_fio }}</td>
+            <td>{{ student.student_create_date }}</td>
+            <td>{{ student.student_active }}</td>
+            <td>{{ student.student_phone }}</td>
+            
+            <td><a class="btn btn-success" role="button" href="/coursedata/student_update/{{student.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/coursedata/student_delete/{{student.id}}">Delete</a></td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if list_student.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ list_student.previous_page_number }}">Previous</a></li>
+        
+        {% endif %}
+    
+            <!-- <li class="page-item disabled"><a class="page-link" href="#"> Page {{list_student.number }} of {{ list_student.paginator.num_pages }} </a></li> -->
+            {% for i in nums %}
+                <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>    
+            {% endfor %}
+    
+        {% if list_student.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{list_student.next_page_number }}">Next </a></li>
+            <li class="page-item"><a class="page-link" href="?page={{list_student.paginator.num_pages }}">Last &raquo</a></li>
+        
+        {% endif %}
+    
+    </ul>
+  </nav>
+
+
+
+{% endblock %}
+
+
+<!-- <li>
+    <a href="/coursedata/group_detail/{{group.id}}">{{ group.group_name }} </a>
+    
+    
+</li>
+    <ul>
+        <li><a href="/coursedata/group_update/{{group.id}}">Update Information</a></li>
+        <li><a href="/classroom/group_delete/{{group.id}}">Delete Information</a></li>
+    </ul>
+ -->

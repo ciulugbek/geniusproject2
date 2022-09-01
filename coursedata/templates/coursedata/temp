@@ -1,0 +1,5 @@
+{% if (student_parent_cur_obj.student_parent_active == true) %}
+<input type="checkbox" value="checked" id="student_parent_active" name="student_parent_active" checked>
+{% else %}
+<input type="checkbox" value="checked" id="student_parent_active" name="student_parent_active">
+{% endif %}

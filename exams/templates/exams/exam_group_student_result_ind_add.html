@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h1>Add a new gorup exam result for student:</h1>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Exam(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam" disabled>
+                <option value="{{ examgroup_cur_obj.exam_id.id }}" >{{ examgroup_cur_obj.exam_id.exam_name }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group" disabled>
+                <option value="{{ examgroup_cur_obj.group_id.id }}">{{ examgroup_cur_obj.group_id.group_name }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="student">Select student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student" disabled>
+                <option value="{{ studentgroup_obj.student_id.id }}">{{ studentgroup_obj.student_id.student_fio }}({{ studentgroup_obj.student_id.student_phone }}) </option>
+            </select>
+        </div>
+        <div>
+            <label for="exam_percent">Enter exam result</label>
+            <input  class="form-select" type="number" id="exam_percent" name="exam_percent" min="1" max="100">
+        </div>
+        <div>
+            <label for="exam_student_result_comment">Exam comment</label>
+            <textarea  class="form-select" id="exam_group_student_result_comment" name="exam_group_student_result_comment"></textarea>
+        </div>
+        <input type="hidden" id="exam_group_student" name="exam_group_student" value="{{ examgroup_cur_obj.id }}">
+        <input type="hidden" id="student_group" name="student_group" value="{{ studentgroup_obj.id }}">
+        
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

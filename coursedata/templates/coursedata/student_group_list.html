@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:create_student_group" %}">New student group</a>
+<h1>List of Groups of Students</h1>
+
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student full name</th>
+            <th>Group  name</th>            
+            <th>Student phone</th>
+            <th>Group of Student status</th>
+            <th>Group of Student  operation</th>
+            <th>Group of Student operation</th>
+        </tr>
+    </thead>
+      <tbody>
+        {% for studentgroup in studentgroup_obj %}
+        <tr>
+            <td>{{ studentgroup.id }}</td>
+            <td>{{ studentgroup.student_id.student_fio }}</td>
+            <td>{{ studentgroup.group_id.group_name }}</td>
+            <td>{{ studentgroup.student_id.student_phone }}</td>
+            <td>{{ studentgroup.student_group_active }}</td>
+            <td><a class="btn btn-success" role="button" href="/coursedata/student_group_update/{{studentgroup.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/coursedata/student_group_delete/{{studentgroup.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+    
+     
+{% endblock %}
+
+
+

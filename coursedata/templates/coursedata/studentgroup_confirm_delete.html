@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Are you sure you want delete this group for student?</h1>
+    <h2>{{ studentgroup.student_id.student_fio  }}</h2>
+    <h2>{{ studentgroup.group_id.group_name  }}</h2>
+    <h2>{{ studentgroup.student_id.student_phone  }}</h2>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+    </form>
+{% endblock %}

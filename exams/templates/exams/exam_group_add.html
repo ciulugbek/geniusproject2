@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Add a new exam for group:</h2>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Select exam type(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam">
+                {% for exam in exam_obj %}
+                    <option value="{{ exam.id }}">{{ exam.exam_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group">
+                {% for group in group_obj %}
+                    <option value="{{ group.id }}">{{ group.group_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="exam_group_date">Select exam date</label>
+            <input  class="form-select" type="date" id="exam_group_date" name="exam_group_date">
+        </div>
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

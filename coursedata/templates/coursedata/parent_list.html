@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "coursedata:create_parent" %}">New parent</a>
+<h1>List of parents</h1>
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Parent full name</th>
+            <th>Parent status</th>
+            <th>Parent phone</th>
+            <th>Parent operation</th>
+            <th>Parent operation</th>
+        </tr>
+    </thead>
+      <tbody>
+      
+
+    {% for parent in parent_list %}
+        <tr>
+            <td>{{ parent.id }}</td>
+            <td>{{ parent.parent_fio }}</td>
+            <td>{{ parent.parent_phone }}</td>
+            <td>{{ parent.parent_active }}</td>
+            <td><a class="btn btn-success" role="button" href="/coursedata/parent_update/{{parent.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/coursedata/parent_delete/{{parent.id}}">Delete</a></td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+     
+{% endblock %}
+
+
+<!-- <li>
+    <a href="/coursedata/group_detail/{{group.id}}">{{ group.group_name }} </a>
+    
+    
+</li>
+    <ul>
+        <li><a href="/coursedata/group_update/{{group.id}}">Update Information</a></li>
+        <li><a href="/classroom/group_delete/{{group.id}}">Delete Information</a></li>
+    </ul>
+ -->

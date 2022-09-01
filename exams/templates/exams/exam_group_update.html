@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Edit exam for group:</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Select exam type(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam">
+                {% for exam in exam_obj %}
+                    {% if exam.id == exam_group_cur_obj.exam_id.id %}
+                        <option value="{{ exam.id }}" selected>{{ exam.exam_name }}</option>
+                    {% else %}
+                        <option value="{{ exam.id }}">{{ exam.exam_name }}</option>
+                    {% endif %}                
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group">
+                {% for group in group_obj %}
+                    {% if group.id == exam_group_cur_obj.group_id.id %}
+                        <option value="{{ group.id }}" selected>{{ group.group_name }}</option>
+                    {% else %}
+                        <option value="{{ group.id }}">{{ group.group_name }}</option>    
+                    {% endif %}    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="exam_group_date">Select exam date</label>
+            <input  class="form-select" value="{{ exam_group_cur_obj.exam_group_date|date:"Y-m-d" }}" type="date" id="exam_group_date" name="exam_group_date">
+
+        </div>
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

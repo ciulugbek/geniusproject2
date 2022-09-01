@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "exams:create_exam_student_result" %}">New exam result for student</a>
+<h1>List of exams for Students</h1>
+
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Exam name</th>
+            <th>Exam date</th>
+            <th>Group name</th>
+            <th>Student full name</th>
+            <th>Student phone</th>
+            <th>Exam result</th>
+            <th>Operation</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+      <tbody>
+        {% for examstudentresult in examstudentresult_obj %}
+        <tr>
+            <td>{{ examstudentresult.id }}</td>
+            <td>{{ examstudentresult.exam_student_id.exam_id.exam_name }}</td>
+            <td>{{ examstudentresult.exam_student_id.exam_student_date }}</td>
+            <td>{{ examstudentresult.student_group_id.group_id.group_name }}</td>
+            <td>{{ examstudentresult.student_group_id.student_id.student_fio }}</td>
+            <td>{{ examstudentresult.student_group_id.student_id.student_phone }}</td>
+            <td>{{ examstudentresult.exam_percent }}</td>
+            <td><a class="btn btn-success" role="button" href="/exams/exam_student_result_update/{{examstudentresult.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/exams/exam_student_result_delete/{{examstudentresult.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+    
+     
+{% endblock %}
+
+
+

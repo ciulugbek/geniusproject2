@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Are you sure you want delete this exam  for group?</h1>
+    <h2>Exam name: {{ examgroup.exam_id.exam_name  }}</h2>
+    <h2>Group:{{ examgroup.group_id.group_name  }}</h2>
+    <h2>Exma date:{{ examgroup.exam_group_date  }}</h2>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+    </form>
+{% endblock %}

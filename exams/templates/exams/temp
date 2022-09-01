@@ -1,0 +1,84 @@
+home.html
+    <!-- <a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "exams:exam_student_result_list" %}">Exam result for Students</a> -->
+
+
+    
+# def ExamStudentResultAdd(request):
+#     if request.POST:
+#         exam_kod=request.POST['exam']
+#         exam=Exam.objects.get(pk=exam_kod)
+#         student_kod=request.POST['student']
+#         student=Student.objects.get(pk=student_kod)
+#         group_kod=request.POST['group']
+#         group=Groups.objects.get(pk=group_kod)
+#         # exam_student_id=ExamStudent.objects.filter(exam_id=exam_kod,student_id=student_kod).values_list()
+#         exam_student_id=ExamStudent.objects.filter(exam_id=exam_kod,student_id=student_kod).first()
+#         student_group_id=StudentGroup.objects.filter(student_id=student_kod,group_id=group_kod).first()
+        
+
+#         exam_percent=request.POST['exam_percent']
+#         exam_comment=request.POST['exam_student_result_comment']
+        
+        
+#         # if 'student_parent_active' not in request.POST:
+#         #     student_parent_active_kod = False
+#         # else:
+#         #     if request.POST['student_parent_active']=="checked":
+#         #         student_parent_active_kod=True
+#         #     else:
+#         #         student_parent_active_kod=False
+
+#         # print(exam_student_id.id)
+#         ExamStudentResult.objects.create(exam_student_id=exam_student_id,student_group_id=student_group_id,exam_percent=exam_percent,exam_comment=exam_comment)
+#         return redirect(reverse('exams:exam_student_result_list'))
+#     else:
+#         exam_obj=Exam.objects.all() 
+#         group_obj=Groups.objects.all()
+#         student_obj=Student.objects.all() 
+#         # context1={'student_obj':student_obj}
+#         # context2={'parent_obj':parent_obj}
+#         return render(request,'exams/exam_student_result_add.html',{"exam_obj":exam_obj,"group_obj":group_obj,"student_obj":student_obj})
+
+# class ExamStudentResultDeleteView(DeleteView):
+#     model=ExamStudentResult
+#     success_url=reverse_lazy('exams:exam_student_result_list')
+
+
+# def ExamStudentResultUpdate(request, pk):
+#     if request.POST:
+#         exam_kod=request.POST['exam']
+#         exam=Exam.objects.get(pk=exam_kod)
+#         student_kod=request.POST['student']
+#         student=Student.objects.get(pk=student_kod)
+#         group_kod=request.POST['group']
+#         group=Groups.objects.get(pk=group_kod)
+#         # exam_student_id=ExamStudent.objects.filter(exam_id=exam_kod,student_id=student_kod).values_list()
+#         exam_student_id=ExamStudent.objects.filter(exam_id=exam_kod,student_id=student_kod).first()
+#         student_group_id=StudentGroup.objects.filter(student_id=student_kod,group_id=group_kod).first()
+        
+
+#         exam_percent=request.POST['exam_percent']
+#         exam_comment=request.POST['exam_student_result_comment']
+        
+#         exam_student_result_cur_obj=ExamStudentResult.objects.get(pk=pk)
+       
+#         # student_parent_cur_obj.refresh_from_db()
+#         exam_student_result_cur_obj.exam_student_id=exam_student_id
+#         exam_student_result_cur_obj.student_group_id=student_group_id
+#         exam_student_result_cur_obj.exam_percent=exam_percent
+#         exam_student_result_cur_obj.exam_percentexam_comment=exam_comment
+         
+#         exam_student_result_cur_obj.save()
+#         # StudentParent.objects.create(student_id=student,parent_id=parent,student_parent_active=student_parent_active_kod)
+#         return redirect(reverse('exams:exam_student_result_list'))
+#         # return HttpResponse("asa")
+#     else:
+#         exam_obj=Exam.objects.all()
+#         group_obj=Groups.objects.all() 
+#         student_obj=Student.objects.all()
+#         exam_student_result_cur_obj=ExamStudentResult.objects.get(pk=pk)
+#         # print(exam_group_cur_obj.exam_group_date)
+#         # return HttpResponse('asd')
+        
+#         return render(request,'exams/exam_student_result_update.html', {"exam_obj":exam_obj,"group_obj":group_obj,"student_obj":student_obj,'exam_student_result_cur_obj':exam_student_result_cur_obj})
+

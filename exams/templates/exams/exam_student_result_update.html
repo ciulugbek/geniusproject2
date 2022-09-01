@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Edit exam result for student:</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exam">Select exam type(name)</label>
+            <select class="form-select" aria-label="Default select example" id="exam" name="exam">
+                {% for exam in exam_obj %}
+                    {% if exam.id == exam_student_result_cur_obj.exam_student_id.exam_id.id %}
+                        <option value="{{ exam.id }}" selected>{{ exam.exam_name }}</option>
+                    {% else %}
+                        <option value="{{ exam.id }}">{{ exam.exam_name }}</option>
+                    {% endif %}                
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="group">Select group</label>
+            <select class="form-select" aria-label="Default select example" id="group" name="group">
+                {% for group in group_obj %}
+                    {% if group.id == exam_student_result_cur_obj.student_group_id.group_id.id %}
+                        <option value="{{ group.id }}" selected>{{ group.group_name }}</option>
+                    {% else %}
+                        <option value="{{ group.id }}">{{ group.group_name }}</option>    
+                    {% endif %}    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="student">Select student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student">
+                {% for student in student_obj %}
+                    {% if student.id == exam_student_result_cur_obj.student_group_id.student_id.id %}
+                        <option value="{{ student.id }}" selected>{{ student.student_fio}}({{student.student_phone}})</option>
+                    {% else %}
+                        <option value="{{ student.id }}">{{ student.student_fio}}({{student.student_phone}})</option>    
+                    {% endif %}    
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="exam_percent">Enter exam result</label>
+            <input  class="form-select" type="number"  value="{{ exam_student_result_cur_obj.exam_percent }}" id="exam_percent" name="exam_percent" min="1" max="100">
+        </div>
+        <div>
+            <label for="exam_student_result_comment">Select exam date</label>
+            <textarea  class="form-select" id="exam_student_result_comment" name="exam_student_result_comment">{{ exam_student_result_cur_obj.exam_comment }}</textarea>
+        </div>
+
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

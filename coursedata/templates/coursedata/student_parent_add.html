@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    
+    <h2>Add a new parent for student:</h2>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student">Select Student</label>
+            <select class="form-select" aria-label="Default select example" id="student" name="student">
+                {% for student in student_obj %}
+                    <option value="{{ student.id }}">{{ student.student_fio }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="parent">Select Parent</label>
+            <select class="form-select" aria-label="Default select example" id="parent" name="parent">
+                {% for parent in parent_obj %}
+                    <option value="{{ parent.id }}">{{ parent.parent_fio }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="student_parent_active">Select Status</label>
+            <input type="checkbox" value="checked" id="student_parent_active" name="student_parent_active">
+        </div>
+        <input class="btn btn-primary" type="submit">
+    </form>
+</div>
+
+
+{% endblock %}

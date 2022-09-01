@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-primary" role="button" aria-disabled="true" href="{% url "exams:create_exam_group_result" %}">New exam result for group</a>
+<h1>List of Exam for groups</h1>
+
+
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Exam name</th>
+            <th>Group name</th>            
+            <th>Exam date</th>
+            <th>Operation</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+      <tbody>
+        {% for examgroup in examgroup_obj %}
+        <tr>
+            <td>{{ examgroup.id }}</td>
+            <td>{{ examgroup.exam_id.exam_name }}</td>
+            <td>{{ examgroup.group_id.group_name }}</td>
+            <td>{{ examgroup.exam_group_date }}</td>
+            <td><a class="btn btn-success" role="button" href="/exams/exam_group_update/{{examgroup.id}}">Update</a></td>
+            <td><a class="btn btn-danger" role="button" href="/exams/exam_group_delete/{{examgroup.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+    
+     
+{% endblock %}
+
+
+

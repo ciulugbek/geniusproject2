@@ -1,0 +1,4 @@
+migrations.RemoveConstraint(
+            model_name='examstudent',
+            name='exam_student_date_unique',
+        ),
