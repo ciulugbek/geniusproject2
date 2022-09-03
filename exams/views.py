@@ -186,16 +186,20 @@ def ExamGroupResultAdd(request, pk):
     examgroup_cur_obj=ExamGroup.objects.get(pk=pk)
     studentgroup_obj = StudentGroup.objects.filter(group_id=examgroup_cur_obj.group_id.id).all()
     examgroupresult_cur_obj=ExamGroupResult.objects.filter(exam_group_id=examgroup_cur_obj.id).all()
-    if not examgroupresult_cur_obj:
-        return render(request,'exams/exam_group_result_list_add.html',{"examgroup_cur_obj":examgroup_cur_obj,
-                                                                    "studentgroup_obj":studentgroup_obj,
-                                                                    "vhasresult":False})
-
-    else:
-        return render(request,'exams/exam_group_result_list_add.html',{"examgroup_cur_obj":examgroup_cur_obj,
+    return render(request,'exams/exam_group_result_list_add.html',{"examgroup_cur_obj":examgroup_cur_obj,
                                                                     "examgroupresult_cur_obj":examgroupresult_cur_obj,
-                                                                    "studentgroup_obj":studentgroup_obj,
-                                                                    "vhasresult":True})
+                                                                    "studentgroup_obj":studentgroup_obj})
+
+    # if not examgroupresult_cur_obj:
+    #     return render(request,'exams/exam_group_result_list_add.html',{"examgroup_cur_obj":examgroup_cur_obj,
+    #                                                                 "studentgroup_obj":studentgroup_obj,
+    #                                                                 "vhasresult":False})
+
+    # else:
+    #     return render(request,'exams/exam_group_result_list_add.html',{"examgroup_cur_obj":examgroup_cur_obj,
+    #                                                                 "examgroupresult_cur_obj":examgroupresult_cur_obj,
+    #                                                                 "studentgroup_obj":studentgroup_obj,
+    #                                                                 "vhasresult":True})
 
 def ExamGroupStudentResultAddInd(request,egpk,sgpk):
         ExamGroupResultInd_obj=ExamGroupResult.objects.filter(exam_group_id=egpk,student_group_id=sgpk).first()
