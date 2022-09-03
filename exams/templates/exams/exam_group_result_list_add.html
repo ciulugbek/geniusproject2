@@ -18,31 +18,36 @@
         </tr>
     </thead>
       <tbody>
-        {% if vhasresult %}
-            {% for examgroupresult in examgroupresult_cur_obj %}
-            <tr>
-                <td>{{ examgroupresult.student_group_id.student_id.id }}</td>
-                <td>{{ examgroupresult.student_group_id.student_id.student_fio }}</td>
-                <td>{{ examgroupresult.exam_percent }}</td>
-                <td>{{ examgroupresult.exam_comment }}</td>
-                <td><a class="btn btn-warning" role="button" href="/exams/creare_exam_group_student_result_ind/{{examgroup_cur_obj.id}}/{{studentgroup.id}}">Info</a></td>
-                <td><a class="btn btn-danger" role="button" href="#">Send sms</a></td>
-            </tr>
-            {% endfor %}
-        {% else %}
         {% for studentgroup in studentgroup_obj %}
         <tr>
             <td>{{ studentgroup.student_id.id }}</td>
             <td>{{ studentgroup.student_id.student_fio }}</td>
-            <td></td>
-            <td></td>
+            {% if examgroupresult_cur_obj %}
+                {% for examgroupresult in examgroupresult_cur_obj %}
+                    {% if examgroupresult %}
+                        {% if examgroupresult.student_group_id.id == studentgroup.id %}
+                            <td>{{ examgroupresult.exam_percent }}</td>
+                            <td>{{ examgroupresult.exam_comment }}</td>
+                        {% else %}
+                            <td></td>    
+                            <td></td>
+                        {% endif %}    
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <td></td>
+                <td></td>
+            {% endif %}
             <td><a class="btn btn-warning" role="button" href="/exams/creare_exam_group_student_result_ind/{{examgroup_cur_obj.id}}/{{studentgroup.id}}">Info</a></td>
             <td><a class="btn btn-danger" role="button" href="#">Send sms</a></td>
         </tr>
         {% endfor %}
 
         
-        {% endif %}
+        
       </tbody>
 </table>
     
